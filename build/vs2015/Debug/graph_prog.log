@@ -1,9 +1,4 @@
-﻿  cube_system.cpp
-c:\users\tomg\documents\projects\ss18_ecg_u3_graph_prog\src\cube_system.cpp(74): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-c:\users\tomg\documents\projects\ss18_ecg_u3_graph_prog\src\cube_system.cpp(79): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-c:\users\tomg\documents\projects\ss18_ecg_u3_graph_prog\src\cube_system.cpp(81): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\tomg\documents\projects\ss18_ecg_u3_graph_prog\src\cube_system.cpp(86): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-c:\users\tomg\documents\projects\ss18_ecg_u3_graph_prog\src\cube_system.cpp(93): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+﻿  terrain.cpp
   graph_prog.vcxproj -> C:\Users\tomg\Documents\projects\ss18_ecg_u3_graph_prog\build\vs2015\Debug\graph_prog.exe
   graph_prog.vcxproj -> C:\Users\tomg\Documents\projects\ss18_ecg_u3_graph_prog\build\vs2015\Debug\graph_prog.pdb (Full PDB)
   ..\..\dependencies\freeglut\lib\freeglut.dll

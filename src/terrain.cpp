@@ -6,6 +6,29 @@
 #include "terrain.h"
 
 
+void render_coordinate_system() {
+	glBegin(GL_LINES);
+	glColor3d(1, 0, 0);
+	glVertex3d(0, 0, 0);
+	glVertex3d(100, 0, 0);
+
+	glColor3d(0, 1, 0);
+	glVertex3d(0, 0, 0);
+	glVertex3d(0, 100, 0);
+
+	glColor3d(0, 0, 1);
+	glVertex3d(0, 0, 0);
+	glVertex3d(0, 0, 100);
+
+	// Reset color
+	glColor3d(0, 0, 0);
+
+	glEnd();
+
+
+}
+
+
 // Load images and initialize variables
 terrain::terrain()
 {
@@ -206,20 +229,28 @@ void terrain::render_terrain()
 				   Vertex eine Texturkoordinate mittels der Methode "glTexCoord2d".
    *********/
 
+	render_coordinate_system();
 
 	// Go through all rows (-1)
 	for (int y = 0; y<map_height-1; y++) {
 
-		// ... to be completed
+		glBegin(GL_TRIANGLE_STRIP);
+		glVertex3d(0, 0, y);
+		glVertex3d(0, 0, y + 1);
 
 		// Draw one strip
 		for (int x = 0; x<map_width; x++) {
 
-			// ... to be completed
-
+			glVertex3d(x, 0, y);
+			glVertex3d(x, 0, y + 1);
 		}
 
+		glVertex3d(map_width - 1, 0, y);
+		glEnd();
+
+
 	}
+
 
 	glPopMatrix();
 }

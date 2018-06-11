@@ -99,23 +99,6 @@ void cube_system::render_system()
 }
 
 
-
-void render_coordinate_system() {
-	glBegin(GL_LINES);
-	glColor3d(1, 0, 0);
-	glVertex3d(0, 0, 0);
-	glVertex3d(20, 0, 0);
-
-	glColor3d(0, 1, 0);
-	glVertex3d(0, 0, 0);
-	glVertex3d(0, 20, 0);
-
-	glColor3d(0, 0, 1);
-	glVertex3d(0, 0, 0);
-	glVertex3d(0, 0, 20);
-	glEnd();
-}
-
 // Render one single cube
 void cube_system::render_cube()
 {
@@ -131,6 +114,7 @@ void cube_system::render_cube()
 				   von (-1, -1, -1) bis (1, 1, 1) reichen.
 	*********/
 
+	glPushMatrix();
 	glTranslated(-1, -1, -1);
 
 	glBegin(GL_QUADS);
@@ -153,7 +137,9 @@ void cube_system::render_cube()
 	glVertex3d(0, 2, 0);
 	glEnd();
 
-	glTranslated(2, 2, 2);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslated(1, 1, 1);
 
 	glBegin(GL_QUADS);
 	glColor3d(1, 0, 0);
@@ -176,8 +162,7 @@ void cube_system::render_cube()
 	glEnd();
 
 	// reset translation
-	glTranslated(-1, -1, -1);
-
+	glPopMatrix();
 }
 
 
