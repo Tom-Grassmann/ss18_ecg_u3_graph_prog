@@ -233,22 +233,22 @@ void terrain::render_terrain()
 	for (int y = 0; y<map_height-1; y++) {
 
 		glBegin(GL_TRIANGLE_STRIP);
-		glVertex3d(0, get_heightmap_value(0, y), y);
 		set_normal(0, y);
-		glVertex3d(0, get_heightmap_value(0, y + 1), y + 1);
+		glVertex3d(0, get_heightmap_value(0, y), y);
 		set_normal(0, y + 1);
+		glVertex3d(0, get_heightmap_value(0, y + 1), y + 1);
 
 		// Draw one strip
 		for (int x = 0; x<map_width; x++) {
-
-			glVertex3d(x, get_heightmap_value(x, y), y);
+			
 			set_normal(x, y);
-			glVertex3d(x, get_heightmap_value(x, y + 1), y + 1);
+			glVertex3d(x, get_heightmap_value(x, y), y);
 			set_normal(x, y + 1);
+			glVertex3d(x, get_heightmap_value(x, y + 1), y + 1);
 		}
 
-		glVertex3d(map_width - 1, get_heightmap_value(map_width - 1, y), y);
 		set_normal(map_width - 1, y);
+		glVertex3d(map_width - 1, get_heightmap_value(map_width - 1, y), y);
 		glEnd();
 
 
@@ -304,6 +304,17 @@ void terrain::set_normal(int x, int y)
 				   double y = vec3.y();
 				   double z = vec3.z();
    *****************/
+
+
+	vec3d direct_x(2.0, get_heightmap_value(x + 1, y) - get_heightmap_value(x - 1, y), 0.0);
+	vec3d direct_y(0.0, get_heightmap_value(x, y + 1) - get_heightmap_value(x, y - 1), 2.0);
+
+	direct_x.normalize();
+	direct_x.normalize();
+
+	vec3d normal = cross(direct_x, direct_y);
+
+	glNormal3d(normal.x(), normal.y(), normal.z());
 }
 
 
