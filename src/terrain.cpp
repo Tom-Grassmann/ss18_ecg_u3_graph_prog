@@ -171,14 +171,12 @@ void terrain::render_wireframe_terrain()
 }
 
 
-
 // Render the terrain
 void terrain::render_terrain()
 {
 	// Store width and height for faster access
 	int map_width = get_heightmap_width();
 	int map_height = get_heightmap_height();
-
 
 	// Move and scale the coordinate system so that we can work with
 	// whole units. That means that a vertex at height map position (x, y)
@@ -187,7 +185,6 @@ void terrain::render_terrain()
 	glPushMatrix();
 	glTranslated(-1, 0, -1);
 	glScaled(2.0/static_cast<double>(map_width), 1.0/256.0, 2.0/static_cast<double>(map_height));
-
 
 
 
@@ -229,36 +226,30 @@ void terrain::render_terrain()
 				   Vertex eine Texturkoordinate mittels der Methode "glTexCoord2d".
    *********/
 
+
 	double scale_x = 1.0 / static_cast<double>(map_width);
 	double scale_y = 1.0 / static_cast<double>(map_height);
+
 
 	// Go through all rows (-1)
 	for (int y = 0; y<map_height-1; y++) {
 
 		glBegin(GL_TRIANGLE_STRIP);
-		// set_normal(0, y);
-		// glVertex3d(0, get_heightmap_value(0, y), y);
-		// set_normal(0, y + 1);
-		// glVertex3d(0, get_heightmap_value(0, y + 1), y + 1);
 
 		// Draw one strip
 		for (int x = 0; x<map_width; x++) {
 			
 
-
-			set_normal(x, y);
 			glTexCoord2d(x * scale_x, y * scale_y);
+			set_normal(x, y);
 			glVertex3d(x, get_heightmap_value(x, y), y);
 
+			glTexCoord2d(x * scale_x, (y + 1) * scale_y);
 			set_normal(x, y + 1);
-			glTexCoord2d(x * scale_x, y * scale_y + 1);
 			glVertex3d(x, get_heightmap_value(x, y + 1), y + 1);
-
 
 		}
 
-		// set_normal(map_width - 1, y);
-		// glVertex3d(map_width - 1, get_heightmap_value(map_width - 1, y), y);
 		glEnd();
 
 
