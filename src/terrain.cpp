@@ -134,8 +134,8 @@ void terrain::render_solid_terrain()
     ************/
 
 
-
-
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture_handle);
 
 
 	// Set the material color to white
@@ -229,6 +229,9 @@ void terrain::render_terrain()
 				   Vertex eine Texturkoordinate mittels der Methode "glTexCoord2d".
    *********/
 
+	double scale_x = 1.0 / static_cast<double>(map_width);
+	double scale_y = 1.0 / static_cast<double>(map_height);
+
 	// Go through all rows (-1)
 	for (int y = 0; y<map_height-1; y++) {
 
@@ -241,10 +244,17 @@ void terrain::render_terrain()
 		// Draw one strip
 		for (int x = 0; x<map_width; x++) {
 			
+
+
 			set_normal(x, y);
+			glTexCoord2d(x * scale_x, y * scale_y);
 			glVertex3d(x, get_heightmap_value(x, y), y);
+
 			set_normal(x, y + 1);
+			glTexCoord2d(x * scale_x, y * scale_y + 1);
 			glVertex3d(x, get_heightmap_value(x, y + 1), y + 1);
+
+
 		}
 
 		// set_normal(map_width - 1, y);
