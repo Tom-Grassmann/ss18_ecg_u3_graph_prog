@@ -4,6 +4,7 @@
 // Copyright (C) 2016 CGV TU Dresden - All Rights Reserved
 //
 #include "recursive_cubes.h"
+#include "tiny_vec.h"
 
 
 // Initialize variables
@@ -12,6 +13,7 @@ recursive_cubes::recursive_cubes()
 	angle = 0;
 	// Set maximum recursion depth
 	depth = 4;
+
 }
 
 
@@ -33,6 +35,8 @@ void recursive_cubes::render()
 	// Start the recursive rendering
 	render_recursive(depth, true);
 }
+
+
 
 
 
@@ -68,6 +72,31 @@ void recursive_cubes::render_recursive(int r, bool render_all)
 					 die in Richtung einer größeren Seite eines Wuerfels aus dem vorherigen
 					 Schritt zeigt, ausgelassen werden soll.
 	************/
+
+	glPushMatrix();
+
+	glScaled(0.5, 0.5, 0.5);
+
+	for (int i = 0; i < 3; i++) {
+		glRotated(90, 1, 0, 0);
+		glTranslated(4, 0, 0);
+
+		render_recursive(r - 1, false);
+	}
+
+	for (int i = 0; i < 3; i++) {
+		glRotated(90, 0, 1, 0);
+		glTranslated(4, 0, 0);
+
+		render_recursive(r - 1, false);
+	}
+
+	glTranslated(4, 0, 0);
+
+
+	render_recursive(r - 1, false);
+
+	glPopMatrix();
 }
 
 

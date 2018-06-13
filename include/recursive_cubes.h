@@ -17,6 +17,13 @@ recursion. To render a single cube it uses "render_cube".
 #pragma once
 
 #include "abstract_scene.h"
+#include <list>
+
+struct vec3 {
+	int x, y, z;
+};
+
+
 
 class recursive_cubes: public abstract_scene
 {
@@ -52,4 +59,7 @@ private:
 
 	// Set the projection and the view
 	void setup_projection();
+
+	std::list<vec3> directions;
+
 };
