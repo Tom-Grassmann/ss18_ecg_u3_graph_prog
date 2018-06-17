@@ -43,8 +43,47 @@ void cube_system_split::render()
      ***********/
 
 
+	double size = 5.5;
 
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-size*aspect, size*aspect, -size, size, 0.01, 100.0);
+	glViewport(0, height / 2, width / 2, height / 2);
 
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(0, 0, 10.0, 0, 0, 0, 0, 1, 0); 
+	cube_system::render_system();
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-size*aspect, size*aspect, -size, size, 0.01, 100.0);
+	glViewport(width / 2, height / 2, width / 2, height / 2);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(10, 0, 0, 0, 0, 0, 0, 1, 0); 
+	cube_system::render_system();
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-size*aspect, size*aspect, -size, size, 0.01, 100.0);
+	glViewport(0, 0, width / 2, height / 2);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(0, 10, 0, 0, 0, 0, 0, 0, -10); 
+	cube_system::render_system();
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(45, glutGet(GLUT_WINDOW_WIDTH) / static_cast<double>(glutGet(GLUT_WINDOW_HEIGHT)), 0.01, 100.0);
+	glViewport(width / 2, 0, width / 2, height / 2);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(10.0, 6.0, -10.0, 0, 0, 0, 0, 1, 0);
+	cube_system::render_system();
 
 
 	// Restore the old view port

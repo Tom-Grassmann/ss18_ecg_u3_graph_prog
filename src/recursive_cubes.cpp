@@ -73,30 +73,64 @@ void recursive_cubes::render_recursive(int r, bool render_all)
 					 Schritt zeigt, ausgelassen werden soll.
 	************/
 
-	glPushMatrix();
+	if (render_all) {
 
-	glScaled(0.5, 0.5, 0.5);
+		glPushMatrix();
+		glScaled(0.5, 0.5, 0.5);
 
-	for (int i = 0; i < 3; i++) {
-		glRotated(90, 1, 0, 0);
-		glTranslated(4, 0, 0);
+		for (int i = 0; i < 4; i++) {
 
+			glPushMatrix();
+			glRotated(90 * i, 1, 0, 0);
+			glTranslated(0, 4, 0);
+			render_recursive(r - 1, false);
+			glPopMatrix();
+		}
+
+
+		glPushMatrix();
+		glRotatef(90, 0, 0, 1);
+		glTranslatef(0, 4, 0);
 		render_recursive(r - 1, false);
-	}
+		glPopMatrix();
 
-	for (int i = 0; i < 3; i++) {
-		glRotated(90, 0, 1, 0);
-		glTranslated(4, 0, 0);
-
+		glPushMatrix();
+		glRotatef(270, 0, 0, 1);
+		glTranslatef(0, 4, 0);
 		render_recursive(r - 1, false);
+		glPopMatrix();
+
+		glPopMatrix();
+
+	} else {
+		
+		glPushMatrix();
+		glScaled(0.5, 0.5, 0.5);
+
+		for (int i = 0; i < 3; i++) {
+
+			glPushMatrix();
+			glRotated(90 * (i - 1), 1, 0, 0);
+			glTranslated(0, 4, 0);
+			render_recursive(r - 1, false);
+			glPopMatrix();
+		}
+
+
+		glPushMatrix();
+		glRotatef(90, 0, 0, 1);
+		glTranslatef(0, 4, 0);
+		render_recursive(r - 1, false);
+		glPopMatrix();
+
+		glPushMatrix();
+		glRotatef(270, 0, 0, 1);
+		glTranslatef(0, 4, 0);
+		render_recursive(r - 1, false);
+		glPopMatrix();
+
+		glPopMatrix();
 	}
-
-	glTranslated(4, 0, 0);
-
-
-	render_recursive(r - 1, false);
-
-	glPopMatrix();
 }
 
 

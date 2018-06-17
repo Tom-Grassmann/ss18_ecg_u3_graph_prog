@@ -6,29 +6,6 @@
 #include "terrain.h"
 
 
-void render_coordinate_system() {
-	glBegin(GL_LINES);
-	glColor3d(1, 0, 0);
-	glVertex3d(0, 0, 0);
-	glVertex3d(100, 0, 0);
-
-	glColor3d(0, 1, 0);
-	glVertex3d(0, 0, 0);
-	glVertex3d(0, 100, 0);
-
-	glColor3d(0, 0, 1);
-	glVertex3d(0, 0, 0);
-	glVertex3d(0, 0, 100);
-
-	// Reset color
-	glColor3d(0, 0, 0);
-
-	glEnd();
-
-
-}
-
-
 // Load images and initialize variables
 terrain::terrain()
 {
@@ -365,6 +342,8 @@ void terrain::create_level_line(int level)
 	                 fuer den Hoehenwert "level". Legen Sie die Start- und Endpunkte
 					 der gefundenen Linien in der Liste "level_lines" ab.
 	*************/
+
+
 }
 
 
